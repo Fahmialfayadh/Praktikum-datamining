@@ -6,15 +6,16 @@ Repositori ini memuat implementasi scraping data sepak bola dari Understat dan a
 
 ```text
 Praktikum/
-├── data/                               # Direktori dataset hasil scraping
-│   ├── understat_players_xg_2023.csv
-│   ├── understat_players_xg_2024.csv
-│   └── understat_players_xg_2025.csv
-├── eda.ipynb                           # Notebook Analisis Eksplorasi Data
-├── webscrap.py                         # Skrip scraper data Understat (CLI modular)
-├── requirements.txt                    # Dependensi Python
-├── .gitignore                          # Konfigurasi pengabaian file git
-└── Modul-DM-RKA/                       # Materi modul praktikum Data Mining
+├── praktikum-webscrap/               # Praktikum 1: Web Scraping & EDA Understat xG
+│   ├── data/                         # Direktori dataset hasil scraping
+│   │   ├── understat_players_xg_2023.csv
+│   │   ├── understat_players_xg_2024.csv
+│   │   └── understat_players_xg_2025.csv
+│   ├── eda.ipynb                     # Notebook Analisis Eksplorasi Data
+│   ├── webscrap.py                   # Skrip scraper data Understat (CLI modular)
+│   └── requirements.txt              # Dependensi Python
+├── .gitignore                        # Konfigurasi pengabaian file git
+└── README.md                         # Indeks repo (file ini)
 ```
 
 ## Instalasi dan Lingkungan
@@ -22,6 +23,9 @@ Praktikum/
 Gunakan `uv` untuk membuat virtual environment dan menginstal dependensi:
 
 ```bash
+# 0. Masuk ke folder praktikumnya
+cd praktikum-webscrap
+
 # 1. Buat virtual environment
 uv venv
 
@@ -47,7 +51,7 @@ python webscrap.py 2024 2025
 Dataset disimpan secara otomatis di folder `data/` dengan format file `understat_players_xg_<tahun>.csv`.
 
 ### 2. Exploratory Data Analysis (EDA)
-Jalankan notebook [eda.ipynb](eda.ipynb) untuk analisis:
+Jalankan notebook [eda.ipynb](praktikum-webscrap/eda.ipynb) untuk analisis:
 - Normalisasi metrik per 90 menit (`xG90`, `xA90`, `npxG_xA90`).
 - Evaluasi kualitas pemilihan tembakan (`xG / shot`).
 - Uji regresi ke rerata pada selisih `goals - xG` lintas 3 musim berurutan.
@@ -99,7 +103,7 @@ Berikut definisi operasional setiap variabel pada dataset hasil scraping dan met
 
 ### 2. Fitur Turunan (*Engineered Features* pada EDA)
 
-Metrik berikut dihitung di dalam notebook [eda.ipynb](eda.ipynb) untuk standardisasi analisis performa:
+Metrik berikut dihitung di dalam notebook [eda.ipynb](praktikum-webscrap/eda.ipynb) untuk standardisasi analisis performa:
 
 | Nama Metrik | Rumus / Definisi | Tujuan Analisis |
 |---|---|---|
