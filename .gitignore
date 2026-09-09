@@ -1,0 +1,21 @@
+# Python environment
+.venv/
+env/
+venv/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Modul eksternal (clone dari kcv-if/Modul-DM-RKA, sudah ada di rka-knowledge)
+# Punya .git + .venv sendiri, jangan ikut ke-commit ke repo ini
+Modul-DM-RKA/
+
