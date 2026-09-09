@@ -1,6 +1,6 @@
 # Praktikum Data Mining
 
-Repositori ini memuat kumpulan pengerjaan praktikum mata kuliah Data Mining. Setiap praktikum tinggal di foldernya masing-masing dan punya dokumentasi sendiri.
+Repo Praktikum Fahmi Alfayadh, 5054251015, RKA
 
 ## Daftar Praktikum
 
