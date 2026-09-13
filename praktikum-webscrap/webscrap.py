@@ -1,4 +1,3 @@
-import argparse
 from pathlib import Path
 import pandas as pd
 import requests
@@ -44,22 +43,19 @@ def scrape_season(season: str, leagues: list[str] = None, output_dir: Path = Non
     output_dir.mkdir(parents=True, exist_ok=True)
     all_players = []
 
-    print(f"\n--- Memulai scraping musim {season} ---")
+    print(f"\n============= scraping musim {season} =======================")
     for league in leagues:
         url = f"https://understat.com/getLeagueData/{league}/{season}"
-        try:
-            res = requests.get(url, headers=HEADERS, timeout=15)
-            if res.status_code == 200:
-                data = res.json()
-                players = data.get("players", [])
-                for p in players:
-                    p["league"] = league
-                    all_players.append(p)
-                print(f"[{league}] Berhasil mengambil {len(players)} pemain.")
-            else:
-                print(f"[{league}] Gagal mengambil data, status HTTP: {res.status_code}")
-        except requests.exceptions.RequestException as e:
-            print(f"[{league}] Terjadi kesalahan jaringan: {e}")
+
+        res = requests.get(url, headers=HEADERS, timeout=15)
+        data = res.json()
+        players = data.get("players", [])
+        for p in players:
+            p["league"] = league #uunderstat gaada kolom league pada response
+            all_players.append(p)
+        print(f"[{league}] berhasil mengambil {len(players)} pemain.")
+
+
 
     df = pd.DataFrame(all_players)
     if not df.empty:
@@ -76,26 +72,9 @@ def scrape_season(season: str, leagues: list[str] = None, output_dir: Path = Non
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Scraper data pemain dan metrik xG dari Understat (EPL, La Liga, Serie A)"
-    )
-    parser.add_argument(
-        "seasons",
-        nargs="*",
-        default=DEFAULT_SEASONS,
-        help="Daftar tahun musim kompetisi (contoh: 2023 2024 2025). Default: 2023 2024 2025",
-    )
-    parser.add_argument(
-        "--output-dir",
-        "-o",
-        type=Path,
-        default=Path("data"),
-        help="Direktori penyimpanan file CSV (default: data/)",
-    )
-    args = parser.parse_args()
-
-    for season in args.seasons:
-        scrape_season(str(season), output_dir=args.output_dir)
+    output_dir = Path("data")
+    for season in DEFAULT_SEASONS:
+        scrape_season(season, output_dir=output_dir)
 
 
 if __name__ == "__main__":
