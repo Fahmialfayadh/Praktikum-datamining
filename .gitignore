@@ -15,7 +15,25 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Modul eksternal (clone dari kcv-if/Modul-DM-RKA, sudah ada di rka-knowledge)
-# Punya .git + .venv sendiri, jangan ikut ke-commit ke repo ini
+# External / submodules
 Modul-DM-RKA/
+catboost_info/
 
+# Model checkpoints & temporary documents
+*.pkl
+*.docx
+*.zip
+catatan.md
+
+# Large datasets in tugas-ensemble
+tugas-ensemble/creditcard.csv
+tugas-ensemble/creditcard.csv.zip
+tugas-ensemble/n
+
+# Root whitelist
+/*
+!/tugas-scrapping-eda/
+!/tugas-praproses-data/
+!/tugas-ensemble/
+!/.gitignore
+!/README.md
